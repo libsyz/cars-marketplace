@@ -1,1 +1,53 @@
 // Specific CSS for your home-page
+.cards {
+  display: flex;
+  text-align:center;
+  justify-content: space-around;
+}
+
+.card {
+  height: 25rem;
+  width: 22%;
+  box-shadow: 2px 2px 11px -1px rgba(0,0,0,0.24);
+  padding: 16px;
+}
+
+.card img{
+  height: 10rem;
+  width: auto;
+}
+
+body {
+  margin: 0;
+  font-family: Open Sans;
+}
+
+h1, h2, h3, h4 {
+  font-family: Poppins;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+}
+
+p {
+font-size:large;
+}
+
+.container {
+  margin: 0px 150px;
+  text-align: center;
+  padding: 30px;
+}
+
+.footer {
+  background-color: grey;
+  text-align: center;
+  color:white;
+  height:7rem;
+  padding: 5px;
+}
