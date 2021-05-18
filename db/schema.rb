@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_15_093208) do
+ActiveRecord::Schema.define(version: 2021_05_18_123707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 2021_05_15_093208) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "renter_reviews", force: :cascade do |t|
+    t.text "review"
+    t.bigint "car_id", null: false
+    t.bigint "renter_id"
+    t.bigint "reviewer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["car_id"], name: "index_renter_reviews_on_car_id"
+    t.index ["renter_id"], name: "index_renter_reviews_on_renter_id"
+    t.index ["reviewer_id"], name: "index_renter_reviews_on_reviewer_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -79,4 +91,7 @@ ActiveRecord::Schema.define(version: 2021_05_15_093208) do
   add_foreign_key "car_reviews", "users"
   add_foreign_key "favorites", "cars"
   add_foreign_key "favorites", "users"
+  add_foreign_key "renter_reviews", "cars"
+  add_foreign_key "renter_reviews", "users", column: "renter_id"
+  add_foreign_key "renter_reviews", "users", column: "reviewer_id"
 end
