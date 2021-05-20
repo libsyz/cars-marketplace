@@ -10,6 +10,7 @@ Car.destroy_all
 User.destroy_all
 CarReview.destroy_all
 RenterReview.destroy_all
+Favorite.destroy_all
 
 
 car_one = Car.create(
@@ -68,3 +69,11 @@ end
     reviewer_id: User.all.where.not(id: sample_id).order("RANDOM()").limit(1)[0].id
   )
 end
+
+15.times do
+  Favorite.create!(
+    car_id: [1..15].sample,
+    user_id: [1..5].sample
+  )
+end
+
