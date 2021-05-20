@@ -12,6 +12,24 @@ CarReview.destroy_all
 RenterReview.destroy_all
 Favorite.destroy_all
 
+
+car_one = Car.create(
+  age: "5 years",
+  license_plate: Faker::Address.zip,
+  model: "Cerato",
+  brand: "KIA",
+  image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  )
+
+car_two = Car.create(
+  age: "7 years",
+  license_plate: Faker::Address.zip,
+  model: "Sorento",
+  brand: "KIA",
+  image_urls: "https://images.pexels.com/photos/6301929/pexels-photo-6301929.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  )
+
+
 15.times do
   Car.create!(
     license_plate: Faker::Address.zip,
