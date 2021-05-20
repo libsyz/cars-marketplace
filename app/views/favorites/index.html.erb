@@ -1,8 +1,17 @@
 <% @favorites.each do |favorite| %>
 
-1. <% favorite %>
-
+ID: <%= favorite.id %>
+License Plate: <%= favorite.car.license_plate %>
+Model: <%= favorite.car.model %>
+<%= link_to "Delete",
+    favorite_path(favorite),
+    method: :delete,
+    data: { confirm: "Are you sure?" }
+%>
+<br>
 
 <% end %>
+
+
 
 

@@ -54,8 +54,8 @@ end
 
 15.times do
   Favorite.create!(
-    car_id: [1..15].sample,
-    user_id: [1..5].sample
+    car_id: Car.all.order("RANDOM()").limit(1)[0].id,
+    user_id: User.all.order("RANDOM()").limit(1)[0].id
   )
 end
 
