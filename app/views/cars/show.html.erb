@@ -1,0 +1,14 @@
+<h2><%= @car.license_plate %></h2>
+
+<p><%= @car.brand %></p>
+<p><%= @car.model %></p>
+<p><%= @car.age %></p>
+<p><%= @car.pickup_location %></p>
+<p><%= @car.rental_instructions %></p>
+
+<% @car.car_reviews.each do |car_review| %>
+  <% if car_review.car_id == @car.id %>
+    <p><%= car_review.review %></p>
+  <% end %>
+<% end %>
+
