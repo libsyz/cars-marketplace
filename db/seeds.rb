@@ -10,6 +10,25 @@ Car.destroy_all
 User.destroy_all
 CarReview.destroy_all
 RenterReview.destroy_all
+Favorite.destroy_all
+
+
+car_one = Car.create(
+  age: "5 years",
+  license_plate: Faker::Address.zip,
+  model: "Cerato",
+  brand: "KIA",
+  image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  )
+
+car_two = Car.create(
+  age: "7 years",
+  license_plate: Faker::Address.zip,
+  model: "Sorento",
+  brand: "KIA",
+  image_urls: "https://images.pexels.com/photos/6301929/pexels-photo-6301929.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  )
+
 
 15.times do
   Car.create!(
@@ -50,3 +69,11 @@ end
     reviewer_id: User.all.where.not(id: sample_id).order("RANDOM()").limit(1)[0].id
   )
 end
+
+15.times do
+  Favorite.create!(
+    car_id: [1..15].sample,
+    user_id: [1..5].sample
+  )
+end
+

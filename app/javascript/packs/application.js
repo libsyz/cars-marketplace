@@ -28,3 +28,12 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
 });
+
+// function addFavorite {
+//   // select the element
+//   document.querySelectorAll("img").forEach((img) => {
+//     img.addEventListener("click", (event) => {
+//       event.currentTarget.classList.toggle("img-circle");
+//     });
+//   });
+// }
