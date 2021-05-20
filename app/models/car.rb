@@ -4,4 +4,5 @@ class Car < ApplicationRecord
   has_many :bookings, dependent: :delete_all
   has_many :favorites, dependent: :delete_all
   has_many :users, through: :bookings
+  has_many :users, through: :favorites
 end
