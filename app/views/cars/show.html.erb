@@ -1,14 +1,20 @@
 <h2><%= @car.license_plate %></h2>
 
-<p><%= @car.brand %></p>
-<p><%= @car.model %></p>
-<p><%= @car.age %></p>
-<p><%= @car.pickup_location %></p>
-<p><%= @car.rental_instructions %></p>
+<p> Owner: <%= User.find(@car.owner_id).name %></p>
+<p> Brand: <%= @car.brand %></p>
+<p> Model: <%= @car.model %></p>
+<p> Age: <%= @car.age %></p>
+<p> Pickup Location: <%= @car.pickup_location %></p>
+<p> Rental Instructions: <%= @car.rental_instructions %></p>
 
+<h3> Reviews </h3>
 <% @car.car_reviews.each do |car_review| %>
   <% if car_review.car_id == @car.id %>
     <p><%= car_review.review %></p>
   <% end %>
 <% end %>
+
+<br>
+
+<%= link_to 'Back', cars_path, class: 'btn btn-primary ml-2' %>
 

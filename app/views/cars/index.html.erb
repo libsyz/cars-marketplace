@@ -1,5 +1,32 @@
-<h1>Discover great rental cars near your place!!!</h1>
+<h1>Discover <%= Car.count %> great rental cars near your place!!!</h1>
 
-<% @cars.each do |car| %>
-  <p> <%= car.license_plate %> </p>
-<% end %>
+<div class="row">
+  <% @cars.each do |car| %>
+    <div class="col-4">
+      <div class="car-card">
+        <div class="car-card-image" style="background-image: url('<%= car.image_urls %>')"></div>
+        <div class="car-card-content">
+          <p> Owner: <%= User.find(car.owner_id).name %></p>
+          <p> Brand: <%= car.brand %></p>
+          <p> Model: <%= car.model %></p>
+          <p> License Plate: <%= car.license_plate %></p>
+        </div>
+        <div class="car-card-actions">
+          <%= link_to 'View details', car_path(car), class: 'btn btn-primary' %>
+          <%# <%= link_to 'Edit', edit_car_path(car), class: 'ml-3 text-warning' %>
+          <%# <%= link_to "Remove", car_path(car),
+              method: :delete, 
+              data: { confirm: "Are you sure?" },
+              class: 'ml-3 text-danger'
+          %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'List my car', new_car_path, class: 'btn btn-success' %>
+
+

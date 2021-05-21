@@ -12,34 +12,6 @@ CarReview.destroy_all
 RenterReview.destroy_all
 Favorite.destroy_all
 
-
-car_one = Car.create(
-  age: "5 years",
-  license_plate: Faker::Address.zip,
-  model: "Cerato",
-  brand: "KIA",
-  image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  )
-
-car_two = Car.create(
-  age: "7 years",
-  license_plate: Faker::Address.zip,
-  model: "Sorento",
-  brand: "KIA",
-  image_urls: "https://images.pexels.com/photos/6301929/pexels-photo-6301929.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  )
-
-
-15.times do
-  Car.create!(
-    license_plate: Faker::Address.zip,
-    age: [1..15].sample,
-    model: ["Compact", "Premium", "SUV", "Electric"].sample,
-    brand: ["Toyata", "Honda", "Mitsubushi", "Tesla", "Mercedes", "Lexus"].sample,
-    pickup_location: Faker::Address.street_address
-  )
-end
-
 15.times do
   User.create!(
     email: Faker::Internet.email,
@@ -50,11 +22,49 @@ end
   )
 end
 
-User.all.sample(5).each { |user| user.owner = true }
+15.times do
+  sample_owner_id = User.all.order("RANDOM()").limit(1)[0].id
+  user = User.find(sample_owner_id)
+  Car.create!(
+    license_plate: Faker::Vehicle.singapore_license_plate,
+    age: (1..15).to_a.sample,
+    model: ["Compact", "Premium", "SUV", "Electric"].sample,
+    brand: ["Toyata", "Honda", "Mitsubushi", "Tesla", "Mercedes", "Lexus"].sample,
+    pickup_location: Faker::Address.street_address,
+    rental_instructions: Faker::Movies::StarWars.quote,
+    owner_id: user.id
+  )
+  user.owner = true
+  user.save!
+end
+
+
+car_one = Car.create(
+  age: 5,
+  license_plate: Faker::Vehicle.singapore_license_plate,
+  model: "Cerato",
+  brand: "KIA",
+  pickup_location: Faker::Address.street_address,
+  rental_instructions: Faker::Movies::StarWars.quote,
+  owner_id: User.all.where(owner: true).order("RANDOM()").limit(1)[0].id,
+  image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  )
+
+car_two = Car.create(
+  age: 7,
+  license_plate: Faker::Vehicle.singapore_license_plate,
+  model: "Sorento",
+  brand: "KIA",
+  pickup_location: Faker::Address.street_address,
+  rental_instructions: Faker::Movies::StarWars.quote,
+  owner_id: User.all.where(owner: true).order("RANDOM()").limit(1)[0].id,
+  image_urls: "https://images.pexels.com/photos/6301929/pexels-photo-6301929.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  )
+
 
 15.times do
   CarReview.create!(
-    review: Faker::Marketing.buzzwords,
+    review: Faker::Games::Dota.quote,
     car_id: Car.all.order("RANDOM()").limit(1)[0].id,
     user_id: User.all.order("RANDOM()").limit(1)[0].id
   )
