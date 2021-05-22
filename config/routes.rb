@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :cars
+  resources :cars do
+    resources :bookings, only: [:new, :create]
+  end
 
   get "users/:user_id", to: 'favorites#index'
   delete "users/:id", to: 'favorites#destroy', as: :favorite
