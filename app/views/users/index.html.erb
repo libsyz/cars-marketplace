@@ -1,10 +1,12 @@
+<h1>My Favorite Cars</h1>
+
 <% @favorites.each do |favorite| %>
 
 ID: <%= favorite.id %>
 License Plate: <%= favorite.car.license_plate %>
 Model: <%= favorite.car.model %>
 <%= link_to "Delete",
-favorite_path(favorite.id),
+    "/favorite/#{favorite.id}",
     method: :delete,
     data: { confirm: "Are you sure?" }
 %>
@@ -12,6 +14,9 @@ favorite_path(favorite.id),
 
 <% end %>
 
+<h1>My Reviews</h1>
+
+<h1>What Others Say About Me</h1>
 
 
 
