@@ -2,6 +2,7 @@ class FavoritesController < ApplicationController
 
   def index
     @favorites = Favorite.where(user_id: params[:user_id])
+    render "users/index"
   end
 
   def build
@@ -14,7 +15,6 @@ class FavoritesController < ApplicationController
   def destroy
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
-    redirect_to favorite_path
   end
 
 
