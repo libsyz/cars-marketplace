@@ -9,7 +9,13 @@ class CarsController < ApplicationController
       # Preventing SQL Injection and Database error for
       # unknown characters
     else
-      @cars = Car.all
+      @cars = Car.where.not(latitude: nil, longitude: nil)
+      @markers = @cars.map do |car|
+        {
+          lat: car.latitude,
+          lng: car.longitude
+        }
+      end
     end
   end
 
