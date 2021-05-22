@@ -21,12 +21,11 @@
       <h5>Select your booking period</h5>
 
       <%= simple_form_for [@car, @booking] do |f| %>
-        <%= f.input :start_date, as: :date %>
-        <%= f.input :end_date, as: :date %>
+        <%= f.input :start_date, as: :datepicker %>
+        <%= f.input :end_date, as: :datepicker %>
         <%= f.submit 'Book now', class: 'btn btn-primary' %>
       <% end %>
     </div>
-   
 
     <div class="car-show-card">
       <h3>Price</h3>
@@ -62,7 +61,7 @@
 
 
 
-<%= link_to 'Edit', edit_car_path, class: 'btn btn-success ml-2' %>
+<%= link_to 'Edit', edit_car_path(@car), class: 'btn btn-success ml-2' %>
 <%= link_to 'Back', cars_path, class: 'btn btn-primary ml-2' %>
 <%= link_to 'Leave a review', new_car_car_review_path(@car), class: "btn btn-info" %>
 
