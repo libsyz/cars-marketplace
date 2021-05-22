@@ -6,10 +6,14 @@ class CarsController < ApplicationController
     if params[:query].present?
       @query = params[:query]
       @cars = Car.where("name LIKE ?","%#{params[:query]}%")
-      # Preventing SQL Injection and Database error for
-      # unknown characters
     else
-      @cars = Car.all
+      @cars = Car.where.not(latitude: nil, longitude: nil)
+      @markers = @cars.map do |car|
+        {
+          lat: car.latitude,
+          lng: car.longitude
+        }
+      end
     end
   end
 
@@ -29,6 +33,7 @@ class CarsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @favorite = Favorite.new
   end
 
   def edit
@@ -44,6 +49,18 @@ class CarsController < ApplicationController
     redirect_to cars_path
   end
 
+  def favorite_new
+    @favorite = Favorite.new
+  end
+
+  def favorite_save
+    @favorite = Favorite.new(favorite_params)
+    @favorite.save
+
+    # no need for app/views/restaurants/create.html.erb
+    redirect_to favorite_path(@favorite)
+  end
+
   private
 
   def set_car
@@ -52,5 +69,9 @@ class CarsController < ApplicationController
 
   def car_params
     params.require(:car).permit(:license_plate, :age, :model, :brand, :pickup_location, :rental_instructions, :image_urls)
+  end
+
+  def favorite_params
+    params.require(:favorite).permit(:user_id, :car_id)
   end
 end

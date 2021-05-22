@@ -4,7 +4,7 @@ class Car < ApplicationRecord
   has_many :bookings, dependent: :delete_all
   has_many :favorites, dependent: :delete_all
   has_many :users, through: :bookings
-  has_many :users_favorite, through: :favorites, class_name: "User"
+  has_many :users_favorite, through: :favorites, source: :user, class_name: "User"
   belongs_to :owner, class_name: "User"
 
   validates :license_plate, presence: true, uniqueness: true
@@ -13,4 +13,7 @@ class Car < ApplicationRecord
   validates :model, presence: true
   validates :pickup_location, presence: true
   validates :rental_instructions, presence: true
+
+  geocoded_by :pickup_location
+  after_validation :geocode, if: :will_save_change_to_pickup_location?
 end
