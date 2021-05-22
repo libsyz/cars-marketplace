@@ -17,8 +17,10 @@ class FavoritesController < ApplicationController
   def destroy
     @favorite = Favorite.where(:user_id => current_user.id, :car_id => params[:car_id]).first
     @favorite.destroy
+  #test
     redirect_back(fallback_location: root_path)
   end
+
 
   private
 
