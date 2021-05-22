@@ -1,0 +1,5 @@
+
+<%= simple_form_for [ @car, @car_review ] do |f| %>
+  <%= f.input :review %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>
