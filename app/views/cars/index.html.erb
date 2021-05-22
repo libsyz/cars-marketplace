@@ -14,16 +14,15 @@
         <div class="car-card-actions">
           <%= link_to 'View details', car_path(car), class: 'btn btn-primary' %>
           <%= link_to 'Edit', edit_car_path(car), class: 'btn btn-success' %>
-          <%= link_to "Remove", car_path(car), 
-              method: :delete, 
-              data: { confirm: "Are you sure you want to delete this list?" }, 
+          <%= link_to "Remove", car_path(car),
+              method: :delete,
+              data: { confirm: "Are you sure you want to delete this list?" },
               class: 'btn btn-danger' %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-
 <br>
 
 <%= link_to 'List my car', new_car_path, class: 'btn btn-success' %>

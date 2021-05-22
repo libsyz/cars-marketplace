@@ -32,7 +32,8 @@ end
     brand: ["Toyata", "Honda", "Mitsubushi", "Tesla", "Mercedes", "Lexus"].sample,
     pickup_location: Faker::Address.street_address,
     rental_instructions: Faker::Movies::StarWars.quote,
-    owner_id: user.id
+    owner_id: user.id,
+    image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   )
   user.owner = true
   user.save!
