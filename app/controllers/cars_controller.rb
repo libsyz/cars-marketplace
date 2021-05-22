@@ -6,8 +6,6 @@ class CarsController < ApplicationController
     if params[:query].present?
       @query = params[:query]
       @cars = Car.where("name LIKE ?","%#{params[:query]}%")
-      # Preventing SQL Injection and Database error for
-      # unknown characters
     else
       @cars = Car.where.not(latitude: nil, longitude: nil)
       @markers = @cars.map do |car|
@@ -34,7 +32,8 @@ class CarsController < ApplicationController
   end
 
   def show
-    favorite_new
+    @booking = Booking.new
+    @favorite = Favorite.new
   end
 
   def edit
