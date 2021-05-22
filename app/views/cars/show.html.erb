@@ -1,6 +1,5 @@
 <div class="map" style="background-image: url('<%= @car.image_urls %>')"></div>
 
-
 <div class="row">
   <div class="col-8">
     <div class="car-show-card">
@@ -21,18 +20,13 @@
     <div class="car-show-card">
       <h5>Select your booking period</h5>
 
-      <form action="">
-        <div class="form-group">
-          <label for="input-group-addon" id="basic-addon1">Start Date:</label>
-          <input type="date" class="form-control" id="input-group-addon">
-        </div>
-        <div class="form-group mt-2">
-          <label for="input-group-addon" id="basic-addon1">End Date:</label>
-          <input type="date" class="form-control" id="input-group-addon">
-        </div>
-        <input type="submit" value="Book now" class="btn btn-success mt-2" style="width: 100%">
-      </form>
+      <%= simple_form_for [@car, @booking] do |f| %>
+        <%= f.input :start_date, as: :date %>
+        <%= f.input :end_date, as: :date %>
+        <%= f.submit 'Book now', class: 'btn btn-primary' %>
+      <% end %>
     </div>
+   
 
     <div class="car-show-card">
       <h3>Price</h3>
