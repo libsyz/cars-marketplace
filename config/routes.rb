@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :car_reviews, only: [:new, :create]
   end
 
+
   get "users/:user_id", to: 'users#index'
+  get "users/:user_id/renter_reviews", to: 'renter_reviews#index'
 
   post "favorites", to: 'favorites#create', as: :favorites
   delete "favorites/:car_id", to: 'favorites#destroy', as: :favorite
