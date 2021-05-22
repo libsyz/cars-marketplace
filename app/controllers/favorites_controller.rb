@@ -1,9 +1,9 @@
 class FavoritesController < ApplicationController
 
-  def index
-    @favorites = Favorite.where(user_id: params[:user_id])
-    render "users/index"
-  end
+  # def index
+  #   @favorites = Favorite.where(user_id: params[:user_id])
+  #   render 'users/index'
+  # end
 
   def create
     @favorite = Favorite.new(favorite_params)
