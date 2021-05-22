@@ -21,3 +21,19 @@
 <%= link_to 'Edit', edit_car_path, class: 'btn btn-success ml-2' %>
 <%= link_to 'Back', cars_path, class: 'btn btn-primary ml-2' %>
 
+
+  <% if @car.users_favorite.include? current_user%>
+    <%= link_to "Favorited!", favorite_path(@car.id), method: :delete, class: "btn btn-danger" %>
+  <%else%>
+    <%= form_for(@favorite) do |f| %>
+    <%= f.hidden_field :car_id, value: @car.id  %>
+    <%= f.submit "Favorite", class: "btn btn-danger", id: "bookmark"%>
+  <%end%>
+<% end %>
+
+
+
+
+
+
+

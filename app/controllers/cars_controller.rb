@@ -28,6 +28,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    favorite_new
   end
 
   def edit
@@ -43,6 +44,18 @@ class CarsController < ApplicationController
     redirect_to cars_path
   end
 
+  def favorite_new
+    @favorite = Favorite.new
+  end
+
+  def favorite_save
+    @favorite = Favorite.new(favorite_params)
+    @favorite.save
+
+    # no need for app/views/restaurants/create.html.erb
+    redirect_to favorite_path(@favorite)
+  end
+
   private
 
   def set_car
@@ -51,5 +64,9 @@ class CarsController < ApplicationController
 
   def car_params
     params.require(:car).permit(:license_plate, :age, :model, :brand, :pickup_location, :rental_instructions, :image_urls)
+  end
+
+  def favorite_params
+    params.require(:favorite).permit(:user_id, :car_id)
   end
 end

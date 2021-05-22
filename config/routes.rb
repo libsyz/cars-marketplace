@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   resources :cars
 
   get "users/:user_id", to: 'favorites#index'
-  delete "users/:id", to: 'favorites#destroy', as: :favorite
+  # delete "users/:id", to: 'favorites#destroy', as: :favorite
+
+  post "favorites", to: 'favorites#create', as: :favorites
+  delete "favorites/:car_id", to: 'favorites#destroy', as: :favorite
 
   # get "favorites/:user_id", to: 'favorites#index'
   # delete "favorites/:id", to: 'favorites#destroy', as: :favorite
