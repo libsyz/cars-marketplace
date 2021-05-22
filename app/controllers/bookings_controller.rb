@@ -10,7 +10,6 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     @booking.status = "pending"
     if @booking.save
-      # redirect_to new_car_booking_path(@car)
       render "bookings/success"
     else
       render "cars/show"
