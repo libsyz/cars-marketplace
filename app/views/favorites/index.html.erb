@@ -4,7 +4,7 @@ ID: <%= favorite.id %>
 License Plate: <%= favorite.car.license_plate %>
 Model: <%= favorite.car.model %>
 <%= link_to "Delete",
-    favorite_path(favorite),
+favorite_path(favorite.id),
     method: :delete,
     data: { confirm: "Are you sure?" }
 %>
