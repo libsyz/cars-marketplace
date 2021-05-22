@@ -1,5 +1,10 @@
 class CarReviewsController < ApplicationController
 
+  def index
+    @car_reviews = CarReview.where(user_id: current_user.id )
+    render "users/index"
+  end
+
   def new
     @car = Car.find(params[:car_id])
     @car_review = CarReview.new
@@ -19,4 +24,7 @@ class CarReviewsController < ApplicationController
   def car_review_params
     params.require(:car_review).permit(:review)
   end
+
+
+
 end
