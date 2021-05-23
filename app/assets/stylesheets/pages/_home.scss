@@ -19,8 +19,9 @@ p {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-size: smaller;
+}
 
-  .flex {
+.flex {
   display: flex;
 }
 
@@ -67,7 +68,7 @@ p {
   position: relative;
   background-color: inherit;
   border-top: 1px solid rgba(160, 160, 160, 0.2);
-  padding: 16px 24px;
+  padding: 0px;
 }
 
 .car-form {
@@ -93,6 +94,7 @@ p {
 .margin-top-negative {
   margin-top: -75px;
 }
+
 .no-mb {
   margin-bottom: 0;
 }
