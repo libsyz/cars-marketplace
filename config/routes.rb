@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :cars do
+    resources :bookings, only: [:new, :create]
     resources :car_reviews, only: [:new, :create]
   end
 
@@ -13,6 +14,4 @@ Rails.application.routes.draw do
 
   post "favorites", to: 'favorites#create', as: :favorites
   delete "favorites/:car_id", to: 'favorites#destroy', as: :favorite
-
-
 end
