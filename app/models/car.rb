@@ -13,6 +13,9 @@ class Car < ApplicationRecord
   validates :model, presence: true
   validates :pickup_location, presence: true
   validates :rental_instructions, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+  validates :postal_code, presence: true
 
   geocoded_by :pickup_location
   after_validation :geocode, if: :will_save_change_to_pickup_location?
