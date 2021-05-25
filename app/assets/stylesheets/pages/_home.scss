@@ -195,6 +195,16 @@ p {
   color: white;
 }
 
+#car-search {
+  align-self: flex-end;
+  margin-bottom: 24px;
+}
+
+#search-button {
+  margin-left: 24px;
+  height: 64px;
+}
+
 #entry-button {
   position:absolute;
   left: 3rem;

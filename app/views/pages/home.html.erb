@@ -4,12 +4,15 @@
     <h1>Rent a Car. See the World.</h1>
   </div>
 
-  <form>
-    <div class="form-group">
-      <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-    </div>
-  </form>
+
+  <div class="col-8 card h-25" id="car-search">
+      <%= simple_form_for :search, method: :get, url: cars_path, html: { class: "card-body d-flex justify-content-around" } do |f| %>
+        <%= f.input :start_date, as: :datepicker %>
+        <%= f.input :end_date, as: :datepicker %>
+        <%= f.input :postal_code, as: :search %>
+        <%= f.submit 'Search', class: 'btn btn-primary', id: 'search-button' %>
+      <% end %>
+  </div>
 
   <%= link_to "Find my car", cars_path, class: "btn btn-secondary", id: "entry-button" %>
 </div>
