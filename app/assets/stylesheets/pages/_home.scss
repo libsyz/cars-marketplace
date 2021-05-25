@@ -175,3 +175,28 @@ p {
   height:7rem;
   padding: 5px;
 }
+
+.banner {
+  background-image:url('https://images.pexels.com/photos/2356071/pexels-photo-2356071.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+  background-size: cover;
+  background-position: bottom;
+  text-align: center;
+  justify-content: center;
+  display:flex;
+  height: 35rem;
+  position:relative;
+}
+
+.banner-text{
+  position:absolute;
+  left: 3rem;
+  top: 10rem;
+  text-align: left;
+  color: white;
+}
+
+#entry-button {
+  position:absolute;
+  left: 3rem;
+  top: 20rem;
+}
