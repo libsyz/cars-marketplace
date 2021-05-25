@@ -1,36 +1,53 @@
-<h1>Discover <%= @cars.count %> great rental cars near your place 🚙</h1>
+<h1 id="tag-title">We found <%= @cars.count %> great rental cars near you </h1>
 
 <div class="row">
-  <% @cars.each do |car| %>
-    <div class="col-4">
-      <div class="car-card">
-        <div class="car-card-image" style="background-image: url('<%= car.image_urls %>')"></div>
-        <div class="car-card-content">
-          <p> Owner: <%= User.find(car.owner_id).name %></p>
-          <p> Brand: <%= car.brand %></p>
-          <p> Model: <%= car.model %></p>
-          <p> License Plate: <%= car.license_plate %></p>
-        </div>
-        <div class="car-card-actions">
-          <%= link_to 'View details', car_path(car), class: 'btn btn-primary' %>
-          <%= link_to 'Edit', edit_car_path(car), class: 'btn btn-success' %>
-          <%= link_to "Remove", car_path(car),
-              method: :delete,
-              data: { confirm: "Are you sure you want to delete this list?" },
-              class: 'btn btn-danger' %>
+
+
+    <% @cars.each do |car| %>
+      <div class="col-3">
+        <div class="car-card">
+          <div class="car-card-image" style="background-image: url('<%= car.image_urls %>')"></div>
+          <div class="car-card-content">
+            <div class="car-card-content-left">
+              <p><%= car.brand %> | <%= Favorite.where(car_id: car.id).count %> Likes </p>
+              <p id="license-plate">License: <%= car.license_plate %> </p>
+            </div>
+            <div class="car-card-content-right">
+              <h4>$<%= car.price_per_hour %> /hr</h4>
+            </div>
+            <div class="car-type"><p><%= car.model %></p></div>
+          </div>
+
+
+          <div class="car-card-actions">
+            <%= link_to 'View', car_path(car), class: 'btn btn-outline-secondary', id: 'viewbook' %>
+            <%= link_to 'Book', car_path(car), class: 'btn btn-outline-secondary', id: 'viewbook' %>
+  <!--
+            <%= link_to 'Edit', edit_car_path(car), class: 'btn btn-success' %>
+            <%= link_to "Remove", car_path(car),
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete this list?" },
+                class: 'btn btn-danger' %>
+  -->
+          </div>
+
+
+
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
-<br>
+    <% end %>
 
-<div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-     >
+
+    <div id="map"
+        style="width: 100%; height: 600px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+
 </div>
+
+
+
 
 
 
