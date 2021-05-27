@@ -6,15 +6,15 @@
 
 
   <div class="col-8 card h-25" id="car-search">
-      <%= simple_form_for :search, method: :get, url: cars_path, html: { class: "card-body d-flex justify-content-around" } do |f| %>
-        <%= f.input :start_date, as: :datepicker %>
-        <%= f.input :end_date, as: :datepicker %>
-        <%= f.input :postal_code, as: :search %>
-        <%= f.submit 'Search', class: 'btn btn-primary', id: 'search-button' %>
+      <%= simple_form_for :search, method: :get, url: cars_path, html: { class: "card-body" } do |f| %>
+        <div class="flexbox-class">
+          <%= f.input :start_date, as: :datepicker %>
+          <%= f.input :end_date, as: :datepicker %>
+          <%= f.input :postal_code, as: :search %>
+          <%= f.submit 'Search', class: 'btn btn-secondary', id: 'search-button' %>
+        </div>
       <% end %>
   </div>
-
-  <%= link_to "Find my car", cars_path, class: "btn btn-secondary", id: "entry-button" %>
 </div>
 
 
