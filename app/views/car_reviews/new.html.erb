@@ -1,5 +1,10 @@
 
-<%= simple_form_for [ @car, @car_review ] do |f| %>
+<div class="map" style="background-image: url('<%= @car.image_urls %>')"></div>
+
+
+<div class="car-show-card">
+  <%= simple_form_for [ @car, @car_review ] do |f| %>
   <%= f.input :review %>
   <%= f.submit "Submit review", class: "btn btn-primary" %>
-<% end %>
+  <% end %>
+</div>

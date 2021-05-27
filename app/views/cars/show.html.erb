@@ -61,16 +61,17 @@
     <div class="car-show-card">
       <h4 class="car-card-title">Additional Options</h4>
 
-      <%= link_to 'Leave a review', new_car_car_review_path(@car), class: "btn btn-outline-secondary" %>
-
-      <% if @car.users_favorite.include? current_user%>
-        <%= link_to "Liked", favorite_path(@car.id), method: :delete, class: "btn btn-secondary" %>
-      <%else%>
-        <%= form_for(@favorite) do |f| %>
-        <%= f.hidden_field :car_id, value: @car.id  %>
-        <%= f.submit "Like", class: "btn btn-outline-secondary", id: "bookmark", style: 'display:inline-block'%>
-      <%end%>
-      <% end %>
+      <%= link_to 'Leave a review', new_car_car_review_path(@car), class: "btn btn-outline-secondary", style: 'width:100%' %>
+      <div id="bookmark">
+        <% if @car.users_favorite.include? current_user%>
+          <%= link_to "Liked", favorite_path(@car.id), method: :delete, class: "btn btn-secondary", style: 'width:100%' %>
+        <%else%>
+          <%= form_for(@favorite) do |f| %>
+          <%= f.hidden_field :car_id, value: @car.id  %>
+         <%= f.submit "Like", class: "btn btn-outline-secondary", style: 'width:100%'%>
+        <%end%>
+        <% end %>
+      </div>
 
     </div>
     <div class="car-show-card">
@@ -89,8 +90,8 @@
 <br>
 
 
-
+<!--
 <%= link_to 'Edit', edit_car_path(@car), class: 'btn btn-outline-secondary' %>
 <%= link_to 'Back', cars_path, class: 'btn btn-outline-secondary' %>
 
-
+-->
