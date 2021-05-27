@@ -1,2 +1,22 @@
-<h1>You don't need to go far to rent a car!</h1>
-<%= link_to "See Cars Now", cars_path, class: "btn btn-primary" %>
+
+<div class="banner">
+  <div class="banner-text">
+    <h1>Rent a Car. See the World.</h1>
+  </div>
+
+
+  <div class="col-8 card h-25" id="car-search">
+      <%= simple_form_for :search, method: :get, url: cars_path, html: { class: "card-body" } do |f| %>
+        <div class="flexbox-class">
+          <%= f.input :start_date, as: :datepicker %>
+          <%= f.input :end_date, as: :datepicker %>
+          <%= f.input :postal_code, as: :search %>
+          <%= f.submit 'Search', class: 'btn btn-secondary', id: 'search-button' %>
+        </div>
+      <% end %>
+  </div>
+</div>
+
+
+
+

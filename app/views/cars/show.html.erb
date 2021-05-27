@@ -3,74 +3,95 @@
 <div class="row">
   <div class="col-8">
     <div class="car-show-card">
-      <h1><%= @car.license_plate %></h1>
+      <h4 class="car-card-title">Vehicle Details</h4>
+      <span style="color:grey">
+        <i class="fas fa-car"> </i>
+      </span>
+      Brand: <%= @car.brand %>
+      <br>
+
+      <span style="color:grey">
+        <i class="fas fa-calendar-alt"> </i>
+      </span>
+      Manufacture: <%= 2021 - @car.age %>
+      <br>
+
+      <span style="color:grey">
+        <i class="fas fa-map-marked"> </i>
+      </span>
+      Pickup Location: <%= @car.pickup_location %>
+      <br>
+
+      <span style="color:grey">
+        <i class="fas fa-book-open"> </i>
+      </span>
+      Rental Instructions:
+      <br>
+      <%= @car.rental_instructions %>
+      <br>
+
     </div>
-    <div class="car-show-card">
-      <h2>Some useful details about this car</h2>
-      <p> Owner: <%= User.find(@car.owner_id).name %></p>
-      <p> Brand: <%= @car.brand %></p>
-      <p> Model: <%= @car.model %></p>
-      <p> Age: <%= @car.age %></p>
-      <p> Pickup Location: <%= @car.pickup_location %></p>
-      <p> Rental Instructions: <%= @car.rental_instructions %></p>
-    </div>
+
+   <div class="car-show-card">
+     <h4 class="car-card-title"> Reviews </h4>
+      <% @car.car_reviews.each do |car_review| %>
+        <% if car_review.car_id == @car.id %>
+          <p id="review-box">
+            <%= car_review.review %>
+            <%= car_review.created_at %>
+
+          </p>
+        <% end %>
+      <% end %>
+   </div>
+
   </div>
 
   <div class="col-4">
     <div class="car-show-card">
-      <h5>Select your booking period</h5>
+      <h4 class="car-card-title">Book your car</h5>
 
       <%= simple_form_for [@car, @booking] do |f| %>
         <%= f.input :start_date, as: :datepicker %>
         <%= f.input :end_date, as: :datepicker %>
-        <%= f.submit 'Book now', class: 'btn btn-primary' %>
+        <%= f.submit 'Book now', class: 'btn btn-secondary book', style: 'width:100%' %>
       <% end %>
     </div>
 
     <div class="car-show-card">
-      <h3>Price</h3>
-      <div class="flex">
-        <div class="flex ml-3">
-          <i class="material-icons">attach_money</i> 100
-        </div>
+      <h4 class="car-card-title">Additional Options</h4>
+
+      <%= link_to 'Leave a review', new_car_car_review_path(@car), class: "btn btn-outline-secondary", style: 'width:100%' %>
+      <div id="bookmark">
+        <% if @car.users_favorite.include? current_user%>
+          <%= link_to "Liked", favorite_path(@car.id), method: :delete, class: "btn btn-secondary", style: 'width:100%' %>
+        <%else%>
+          <%= form_for(@favorite) do |f| %>
+          <%= f.hidden_field :car_id, value: @car.id  %>
+         <%= f.submit "Like", class: "btn btn-outline-secondary", style: 'width:100%'%>
+        <%end%>
+        <% end %>
       </div>
+
     </div>
     <div class="car-show-card">
-      <div class="flex-align">
-        <h6 class="no-mb">Share</h6>
+        <h4 class="car-card-title">Share</h4>
+          <i class="fab fa-facebook-square fa-2x"></i>
+          <i class="fab fa-twitter-square fa-2x"></i>
+          <i class="fab fa-pinterest-square fa-2x"></i>
+          <i class="fas fa-envelope-square fa-2x"></i>
 
-        <div class="flex">
-          <i class="fa fa-facebook-square fa-2x mr-2"></i>
-          <i class="fa fa-twitter-square fa-2x mr-2"></i>
-          <i class="fa fa-pinterest-square fa-2x mr-2"></i>
-          <i class="fa fa-envelope-square fa-2x"></i>
-        </div>
-      </div>
     </div>
   </div>
 </div>
 
-<h3> Reviews </h3>
-<% @car.car_reviews.each do |car_review| %>
-  <% if car_review.car_id == @car.id %>
-    <p><%= car_review.review %></p>
-  <% end %>
-<% end %>
+
 
 <br>
 
 
+<!--
+<%= link_to 'Edit', edit_car_path(@car), class: 'btn btn-outline-secondary' %>
+<%= link_to 'Back', cars_path, class: 'btn btn-outline-secondary' %>
 
-<%= link_to 'Edit', edit_car_path(@car), class: 'btn btn-success ml-2' %>
-<%= link_to 'Back', cars_path, class: 'btn btn-primary ml-2' %>
-<%= link_to 'Leave a review', new_car_car_review_path(@car), class: "btn btn-info" %>
-
-  <% if @car.users_favorite.include? current_user%>
-    <%= link_to "Favorited!", favorite_path(@car.id), method: :delete, class: "btn btn-danger" %>
-  <%else%>
-    <%= form_for(@favorite) do |f| %>
-    <%= f.hidden_field :car_id, value: @car.id  %>
-    <%= f.submit "Favorite", class: "btn btn-danger", id: "bookmark"%>
-  <%end%>
-<% end %>
-
+-->

@@ -13,7 +13,7 @@
               <p id="license-plate">License: <%= car.license_plate %> </p>
             </div>
             <div class="car-card-content-right">
-              <h4>$20/hr</h4>
+              <h4>$<%= car.price_per_hour %> /hr</h4>
             </div>
             <div class="car-type"><p><%= car.model %></p></div>
           </div>
@@ -41,7 +41,6 @@
     <div id="map"
         style="width: 100%; height: 600px;"
         data-markers="<%= @markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        data-mapbox-api-key="<%= ENV["MAPBOX_API"] %>">
     </div>
-
 </div>

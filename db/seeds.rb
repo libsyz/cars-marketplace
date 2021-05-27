@@ -33,8 +33,9 @@ end
     pickup_location: Faker::Address.street_address,
     rental_instructions: Faker::Movies::StarWars.quote,
     owner_id: user.id,
-    image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  )
+    image_urls: ["https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500", "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"].sample,
+    price_per_hour: (15..20).to_a.sample
+    )
   user.owner = true
   user.save!
 end
