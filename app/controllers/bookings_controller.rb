@@ -1,4 +1,14 @@
 class BookingsController < ApplicationController
+  def index
+    @booking = Booking.all
+    @requests = Booking.joins(:car).where("cars.owner_id = #{current_user.id} and bookings.status = 'pending'")
+    @accepted = Booking.joins(:car).where("cars.owner_id = #{current_user.id} and bookings.status = 'accepted'")
+    @rejected = Booking.joins(:car).where("cars.owner_id = #{current_user.id} and bookings.status = 'rejected'")
+    @request_count = @requests.count
+    @accept_count = @accepted.count
+    @reject_count = @rejected.count
+  end
+  
   def new
     @booking = Booking.new
   end

@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_05_22_043721) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "image_urls"
-    t.bigint "owner_id"
+    t.bigint "owner_id", null: false
     t.float "latitude"
     t.float "longitude"
     t.index ["owner_id"], name: "index_cars_on_owner_id"
