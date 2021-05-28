@@ -9,7 +9,7 @@
       <%= simple_form_for :search, method: :get, url: cars_path, html: { class: "card-body d-flex justify-content-around" } do |f| %>
         <%= f.input :start_date, as: :datepicker %>
         <%= f.input :end_date, as: :datepicker %>
-        <%= f.input :postal_code, as: :search %>
+        <%= f.input :address, as: :search %>
         <%= f.submit 'Search', class: 'btn btn-primary', id: 'search-button' %>
       <% end %>
   </div>
