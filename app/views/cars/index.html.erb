@@ -18,10 +18,9 @@
             <div class="car-type"><p><%= car.model %></p></div>
           </div>
 
-
           <div class="car-card-actions">
-            <%= link_to 'View', car_path(car), class: 'btn btn-outline-secondary', id: 'viewbook' %>
-            <%= link_to 'Book', car_path(car), class: 'btn btn-outline-secondary', id: 'viewbook' %>
+            <%= link_to 'View', car_path(car.car_id), class: 'btn btn-outline-secondary', id: 'viewbook' %>
+            <%= link_to 'Book', car_path(car.car_id), class: 'btn btn-outline-secondary', id: 'viewbook' %>
   <!--
             <%= link_to 'Edit', edit_car_path(car), class: 'btn btn-success' %>
             <%= link_to "Remove", car_path(car),

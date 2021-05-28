@@ -1,19 +1,36 @@
+require 'json'
+require 'pry-byebug'
+require 'ostruct'
+
 class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:query].present?
-      @query = params[:query]
-      @cars = Car.where("name LIKE ?","%#{params[:query]}%")
-    else
-      @cars = Car.where.not(latitude: nil, longitude: nil)
-      @markers = @cars.map do |car|
-        {
-          lat: car.latitude,
-          lng: car.longitude
-        }
+    # 1. Find me all cars that are within the booking timeframe
+    sql = "select * from cars join bookings on cars.id = bookings.car_id
+    where (bookings.start_date > cast('#{params[:search][:end_date]}' as date)
+    OR bookings.end_date < cast('#{params[:search][:start_date]}' as date))"
+    results = ActiveRecord::Base.connection.execute(sql)
+
+    # 2. Get cars address
+    @cars = []
+    results.each do |car|
+      distance = Geocoder::Calculations.distance_between(car["pickup_location"], params[:search][:address])
+      if distance < 10
+        os = OpenStruct.new car
+        @cars << os
+      else
+        next
       end
+    end
+
+    #map markers for cars
+    @markers = @cars.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude
+      }
     end
   end
 

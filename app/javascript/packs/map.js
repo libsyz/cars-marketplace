@@ -32,3 +32,18 @@ const initMapbox = () => {
     };
 }
 export { initMapbox };
+
+
+// // postal_code to long, lat
+// const postcodeCoordinates = (postal_code) => {
+//   let longitude = 0;
+//   let latitude = 0;
+//   fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${postal_code}.json?access_token=pk.eyJ1IjoiY2hzaGF3biIsImEiOiJja25meWo5aDQyNmF6MnBtdW90cXp2b253In0.GDNnR92sf5_0fhBO5jJuGQ`)
+//     .then(response => response.json())
+//     .then((data) => {
+//       longitude = data.features[0].center[0];
+//       latitude = data.features[0].center[1];
+//       console.log(`${longitude}, ${latitude}`);
+//     });
+// });
+

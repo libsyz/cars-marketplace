@@ -11,6 +11,7 @@ User.destroy_all
 CarReview.destroy_all
 RenterReview.destroy_all
 Favorite.destroy_all
+Booking.destroy_all
 
 15.times do
   User.create!(
@@ -22,47 +23,60 @@ Favorite.destroy_all
   )
 end
 
-15.times do
-  sample_owner_id = User.all.order("RANDOM()").limit(1)[0].id
-  user = User.find(sample_owner_id)
-  Car.create!(
-    license_plate: Faker::Vehicle.singapore_license_plate,
-    age: (1..15).to_a.sample,
-    model: ["Compact", "Premium", "SUV", "Electric"].sample,
-    brand: ["Toyata", "Honda", "Mitsubushi", "Tesla", "Mercedes", "Lexus"].sample,
-    pickup_location: Faker::Address.street_address,
-    rental_instructions: Faker::Movies::StarWars.quote,
-    owner_id: user.id,
-    image_urls: ["https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500", "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"].sample,
-    price_per_hour: (15..20).to_a.sample
-    )
-  user.owner = true
-  user.save!
-end
+# 15.times do
+#   sample_owner_id = User.all.order("RANDOM()").limit(1)[0].id
+#   user = User.find(sample_owner_id)
+#   Car.create!(
+#     license_plate: Faker::Vehicle.singapore_license_plate,
+#     age: (1..15).to_a.sample,
+#     model: ["Compact", "Premium", "SUV", "Electric"].sample,
+#     brand: ["Toyata", "Honda", "Mitsubushi", "Tesla", "Mercedes", "Lexus"].sample,
+#     pickup_location: Faker::Address.street_address,
+#     rental_instructions: Faker::Movies::StarWars.quote,
+#     owner_id: user.id,
+#     image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+#     price_per_hour: (15..20).to_a.sample
+#     )
+#   user.owner = true
+#   user.save!
+# end
+=======
 
-
-car_one = Car.create(
+car_one = Car.create!(
   age: 5,
   license_plate: Faker::Vehicle.singapore_license_plate,
-  model: "Cerato",
-  brand: "KIA",
-  pickup_location: Faker::Address.street_address,
+  model: "Compact",
+  brand: "Honda",
+  pickup_location: "20 Jalan Hitam Manis",
   rental_instructions: Faker::Movies::StarWars.quote,
-  owner_id: User.all.where(owner: true).order("RANDOM()").limit(1)[0].id,
-  image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+  price_per_hour: (15..25).to_a.sample,
+  owner_id: User.all.order("RANDOM()").limit(1)[0].id
   )
 
-car_two = Car.create(
+car_two = Car.create!(
   age: 7,
   license_plate: Faker::Vehicle.singapore_license_plate,
-  model: "Sorento",
-  brand: "KIA",
-  pickup_location: Faker::Address.street_address,
+  model: "Premium",
+  brand: "Toyota",
+  pickup_location: "Tampines Street 21 Singapore",
   rental_instructions: Faker::Movies::StarWars.quote,
-  owner_id: User.all.where(owner: true).order("RANDOM()").limit(1)[0].id,
-  image_urls: "https://images.pexels.com/photos/6301929/pexels-photo-6301929.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  image_urls: "https://images.pexels.com/photos/6301929/pexels-photo-6301929.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+  price_per_hour: (15..25).to_a.sample,
+  owner_id: User.all.order("RANDOM()").limit(1)[0].id
   )
 
+car_three = Car.create!(
+  age: 2,
+  license_plate: Faker::Vehicle.singapore_license_plate,
+  model: "Premium",
+  brand: "Lexus",
+  pickup_location: "661 Bukit Timah Road Singapore",
+  rental_instructions: Faker::Movies::StarWars.quote,
+  image_urls: "https://images.pexels.com/photos/977003/pexels-photo-977003.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+  price_per_hour: (15..25).to_a.sample,
+  owner_id: User.all.order("RANDOM()").limit(1)[0].id
+)
 
 15.times do
   CarReview.create!(
@@ -89,3 +103,11 @@ end
   )
 end
 
+3.times do
+  Booking.create!(
+    start_date: Faker::Date.between(from: '2021-05-10', to: '2021-05-15'),
+    end_date: Faker::Date.between(from: '2021-05-20', to: '2021-05-25'),
+    car_id: Car.all.order("RANDOM()").limit(1)[0].id,
+    user_id: User.all.order("RANDOM()").limit(1)[0].id
+  )
+end
