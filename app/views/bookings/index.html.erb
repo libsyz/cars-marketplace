@@ -1,0 +1,66 @@
+<h1 id="tag-title">You have <%= @request_count %> requests awaiting review </h1>
+
+<div class="row">
+  <% @requests.each do |request| %>
+    <div class="col-3">
+      <div class="car-card">
+        <div class="car-card-image" style="background-image: url('<%= request.car.image_urls %>')"></div>
+        <div class="car-card-content">
+          <div class="car-card-content-left">
+            <p><%= request.car.brand %></p>
+            <p><%= request.car.license_plate %></p>
+            <p><%= request.user.name %></p>
+            <p>From <%= request.start_date.to_date %> to <%= request.end_date.to_date %></p>
+            <p>
+              <%= link_to 'Accept', accept_request_path(:booking_id => request.id), class: 'btn btn-outline-secondary' %> 
+              <%= link_to 'Reject', reject_request_path(:booking_id => request.id), class: 'btn btn-outline-secondary' %>
+            </p>
+          </div>
+          <div class="car-type"><p><%= request.car.model %></p></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h2 id="tag-title">You have accepted <%= @accept_count %> bookings</h2>
+
+<div class="row">
+  <% @accepted.each do |accept| %>
+    <div class="col-3">
+      <div class="car-card">
+        <div class="car-card-image" style="background-image: url('<%= accept.car.image_urls %>')"></div>
+        <div class="car-card-content">
+          <div class="car-card-content-left">
+            <p><%= accept.car.brand %></p>
+            <p><%= accept.car.license_plate %></p>
+            <p><%= accept.user.name %></p>
+            <p>From <%= accept.start_date.to_date %> to <%= accept.end_date.to_date %></p>
+          </div>
+          <div class="car-type"><p><%= accept.car.model %></p></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h2 id="tag-title">You have rejected <%= @reject_count %> bookings</h2>
+
+<div class="row">
+  <% @rejected.each do |reject| %>
+    <div class="col-3">
+      <div class="car-card">
+        <div class="car-card-image" style="background-image: url('<%= reject.car.image_urls %>')"></div>
+        <div class="car-card-content">
+          <div class="car-card-content-left">
+            <p><%= reject.car.brand %></p>
+            <p><%= reject.car.license_plate %></p>
+            <p><%= reject.user.name %></p>
+            <p>From <%= reject.start_date.to_date %> to <%= reject.end_date.to_date %></p>
+          </div>
+          <div class="car-type"><p><%= reject.car.model %></p></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

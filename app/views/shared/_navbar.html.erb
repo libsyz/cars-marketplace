@@ -3,7 +3,7 @@
   <%= link_to "#", class: "navbar-brand" do %>
 
     <%= image_tag "https://img.icons8.com/pastel-glyph/2x/car--v2.png" %>
-    <span id="title-text"> Zoom Zebra </span>
+    <span id="title-text"> Nevcar </span>
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,12 @@
         <li class="nav-item">
           <%= link_to "Profile", "/users/#{current_user.id}", class: "nav-link" %>
         </li>
-
+        <li class="nav-item">
+          <%= link_to 'List my car', new_car_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Bookings', bookings_path, class: "nav-link" %>
+        </li>
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

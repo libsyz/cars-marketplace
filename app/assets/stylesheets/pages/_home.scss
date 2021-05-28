@@ -200,16 +200,32 @@ p {
   top: 10rem;
   text-align: left;
   color: white;
+  font-weight: bolder;
 }
 
 #car-search {
   align-self: flex-end;
   margin-bottom: 24px;
+  font-family: Raleway, sans-serif;
+}
+
+.flexbox-class {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.form-group {
+width: 100%;
+}
+
+.card-body{
+  color: grey;
 }
 
 #search-button {
   margin-left: 24px;
   height: 64px;
+  font-family: Raleway, sans-serif;
 }
 
 #entry-button {
