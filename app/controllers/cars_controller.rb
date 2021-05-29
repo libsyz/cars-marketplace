@@ -17,6 +17,7 @@ class CarsController < ApplicationController
     # sql = "select * from cars left join bookings on cars.id = bookings.car_id
     # where (bookings.start_date > cast('#{params[:search][:end_date]}' as date)
     # OR bookings.end_date < cast('#{params[:search][:start_date]}' as date))"
+    
     results = ActiveRecord::Base.connection.execute(sql)
 
     # 2. Get cars address
