@@ -8,6 +8,7 @@ class CarsController < ApplicationController
 
   def index
     # 1. Find me all cars that are within the booking timeframe
+    redirect_to root_path if params[:search].nil?
     start_date_search = params[:search][:start_date]
     end_date_search = params[:search][:end_date]
     sql = "select * from cars join bookings on cars.id = bookings.car_id

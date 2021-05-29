@@ -1,4 +1,6 @@
-<h1>My Favorite Cars</h1>
+<div class="card container">
+
+<h2>My Favorite Cars</h1>
 
 <% @favorites.each do |favorite| %>
 
@@ -12,7 +14,7 @@ Model: <%= favorite.car.model %>
 
 <% end %>
 
-<h1>My Reviews</h1>
+<h2>My Reviews</h1>
 
 <% @car_reviews.each do |car_review| %>
 
@@ -24,7 +26,7 @@ car_review.review %> : <%=car_review.created_at %>
 
 <% end %>
 
-<h1 id="tag-title">My Confirmed Bookings (<%= @confirmed.count %>)</h2>
+<h2 id="tag-title">My Confirmed Bookings (<%= @confirmed.count %>)</h2>
 
 <div class="row">
   <% @confirmed.each do |confirm| %>
@@ -45,7 +47,7 @@ car_review.review %> : <%=car_review.created_at %>
   <% end %>
 </div>
 
-<h1 id="tag-title">My Declined Bookings (<%= @declined.count %>)</h2>
+<h2 id="tag-title">My Declined Bookings (<%= @declined.count %>)</h2>
 
 <div class="row">
   <% @declined.each do |decline| %>
@@ -67,7 +69,7 @@ car_review.review %> : <%=car_review.created_at %>
 </div>
 
 
-<h1>What Others Say About Me</h1>
+<h2>What Others Say About Me</h1>
 
-
+</div>
 

@@ -1,8 +1,8 @@
-en:
-  simple_form:
-    required:
-      text: 'required'
-      mark: '*'
+# en:
+#   simple_form:
+#     required:
+#       text: 'required'
+#       mark: '*'
 
 # frozen_string_literal: true
 #

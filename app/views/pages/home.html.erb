@@ -8,10 +8,16 @@
   <div class="h-25" id="car-search">
       <%= simple_form_for :search, method: :get, url: cars_path, html: { class: "card-body" } do |f| %>
         <div class="flexbox-class">
-          <%= f.input :start_date, as: :datepicker, input_html: { maxlength: 10, size: 40} %>
-          <%= f.input :end_date, as: :datepicker, input_html: { maxlength: 10, size: 40} %>
-          <%= f.input :address, as: :search %>
-          <%= f.submit 'Search', class: 'btn btn-secondary', id: 'search-button' %>
+          <div class="mr-3">
+            <%= f.input :start_date, as: :datepicker, input_html: { class: "form-control mr-3"} %>
+          </div>
+          <div class="mr-3">
+           <%= f.input :end_date, as: :datepicker, input_html: { class: "form-control mr-3"} %>
+         </div>
+         <div class="mr-3">
+           <%= f.input :address, as: :search %>
+          </div>
+            <%= f.submit 'Search', class: 'btn btn-secondary', id: 'search-button' %>
         </div>
       <% end %>
   </div>
