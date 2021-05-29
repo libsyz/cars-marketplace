@@ -51,6 +51,7 @@
     <div class="car-show-card">
       <h4 class="car-card-title">Book your car</h5>
 
+      <h2><%= humanized_money_with_symbol((@car.price_cents/100).round) %>/ day</h2>
       <%= simple_form_for [@car, @booking] do |f| %>
         <%= f.input :start_date, as: :datepicker %>
         <%= f.input :end_date, as: :datepicker %>

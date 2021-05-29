@@ -7,15 +7,21 @@ class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   def index
-    # 1. Find me all cars that are within the booking timeframe
     start_date_search = params[:search][:start_date]
     end_date_search = params[:search][:end_date]
-    sql = "select * from cars join bookings on cars.id = bookings.car_id
+    sql = "select distinct on(license_plate) license_plate, * from cars join bookings on cars.id = bookings.car_id
     where (bookings.start_date > cast(case when '#{end_date_search}' = '' then null else '#{end_date_search}' end AS date)
     OR bookings.end_date < cast(case when '#{start_date_search}' = '' then null else '#{start_date_search}' end AS date))"
+
+    # # 1. Find me all cars that are within the booking timeframe
+    # sql = "select * from cars left join bookings on cars.id = bookings.car_id
+    # where (bookings.start_date > cast('#{params[:search][:end_date]}' as date)
+    # OR bookings.end_date < cast('#{params[:search][:start_date]}' as date))"
+    
     results = ActiveRecord::Base.connection.execute(sql)
 
     # 2. Get cars address
+
     @cars = []
     results.each do |car|
       distance = Geocoder::Calculations.distance_between(car["pickup_location"], params[:search][:address])
@@ -79,6 +85,8 @@ class CarsController < ApplicationController
     # no need for app/views/restaurants/create.html.erb
     redirect_to favorite_path(@favorite)
   end
+
+
 
   private
 

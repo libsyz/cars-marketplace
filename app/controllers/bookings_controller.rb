@@ -8,11 +8,11 @@ class BookingsController < ApplicationController
     @accept_count = @accepted.count
     @reject_count = @rejected.count
   end
-  
+
   def new
     @booking = Booking.new
   end
-  
+
   def create
     @car= Car.find(params[:car_id])
     @booking = Booking.new(booking_params)
@@ -20,7 +20,22 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     @booking.status = "pending"
     if @booking.save
-      render "bookings/success"
+
+      session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        line_items: [{
+          name: @booking.car.license_plate,
+          amount: @booking.price.to_i,
+          currency: 'sgd',
+          quantity: 1
+        }],
+        success_url: booking_success_url,
+        cancel_url: cars_path
+      )
+
+      @session = session.id
+
+      render "bookings/order"
     else
       render "cars/show"
     end
