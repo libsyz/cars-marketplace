@@ -24,6 +24,48 @@ car_review.review %> : <%=car_review.created_at %>
 
 <% end %>
 
+<h1 id="tag-title">My confirmed bookings (<%= @confirmed.count %>)</h2>
+
+<div class="row">
+  <% @confirmed.each do |confirm| %>
+    <div class="col-3">
+      <div class="car-card">
+        <div class="car-card-image" style="background-image: url('<%= confirm.car.image_urls %>')"></div>
+        <div class="car-card-content">
+          <div class="car-card-content-left">
+            <p><%= confirm.car.brand %></p>
+            <p><%= confirm.car.license_plate %></p>
+            <p><%= confirm.user.name %></p>
+            <p>From <%= confirm.start_date.to_date %> to <%= confirm.end_date.to_date %></p>
+          </div>
+          <div class="car-type"><p><%= confirm.car.model %></p></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h1 id="tag-title">My declined bookings (<%= @declined.count %>)</h2>
+
+<div class="row">
+  <% @declined.each do |decline| %>
+    <div class="col-3">
+      <div class="car-card">
+        <div class="car-card-image" style="background-image: url('<%= decline.car.image_urls %>')"></div>
+        <div class="car-card-content">
+          <div class="car-card-content-left">
+            <p><%= decline.car.brand %></p>
+            <p><%= decline.car.license_plate %></p>
+            <p><%= decline.user.name %></p>
+            <p>From <%= decline.start_date.to_date %> to <%= decline.end_date.to_date %></p>
+          </div>
+          <div class="car-type"><p><%= decline.car.model %></p></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 
 <h1>What Others Say About Me</h1>
 
