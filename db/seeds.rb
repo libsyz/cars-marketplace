@@ -19,7 +19,8 @@ Booking.destroy_all
     password: Faker::Internet.password(min_length: 10, max_length: 20, mix_case: true, special_characters: true),
     name: Faker::Name.name,
     address: Faker::Address.full_address,
-    phone: Faker::PhoneNumber.cell_phone
+    phone: Faker::PhoneNumber.cell_phone,
+    owner: Faker::Boolean.boolean(true_ratio: 0.5)
   )
 end
 
