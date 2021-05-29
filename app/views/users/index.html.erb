@@ -24,7 +24,7 @@ car_review.review %> : <%=car_review.created_at %>
 
 <% end %>
 
-<h1 id="tag-title">My confirmed bookings (<%= @confirmed.count %>)</h2>
+<h1 id="tag-title">My Confirmed Bookings (<%= @confirmed.count %>)</h2>
 
 <div class="row">
   <% @confirmed.each do |confirm| %>
@@ -45,7 +45,7 @@ car_review.review %> : <%=car_review.created_at %>
   <% end %>
 </div>
 
-<h1 id="tag-title">My declined bookings (<%= @declined.count %>)</h2>
+<h1 id="tag-title">My Declined Bookings (<%= @declined.count %>)</h2>
 
 <div class="row">
   <% @declined.each do |decline| %>
