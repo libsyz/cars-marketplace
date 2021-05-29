@@ -1,3 +1,9 @@
+# en:
+#   simple_form:
+#     required:
+#       text: 'required'
+#       mark: '*'
+
 # frozen_string_literal: true
 #
 # Uncomment this and change the path if necessary to include your own

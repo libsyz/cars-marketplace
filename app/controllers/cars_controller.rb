@@ -7,6 +7,9 @@ class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   def index
+
+    # 1. Find me all cars that are within the booking timeframe
+  
     start_date_search = params[:search][:start_date]
     end_date_search = params[:search][:end_date]
     sql = "select distinct on(license_plate) license_plate, * from cars join bookings on cars.id = bookings.car_id
