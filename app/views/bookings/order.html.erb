@@ -20,8 +20,9 @@
         <br>
       <% end %>
 
-      <p>Purchase of <strong><%= @booking.car.model %></strong> for <strong><%= humanized_money_with_symbol @booking.price %></strong></p>
-      <button id="Purchase" class="btn btn-secondary">Pay</button>
+      Purchase of <strong><%= @booking.car.model %><%= @booking.car.brand %></strong> for <strong><%= humanized_money_with_symbol @booking.price / 100%></strong>
+      <br>
+      <button id="pay" class="btn btn-secondary">Pay</button>
 
       <script src="https://js.stripe.com/v3/"></script>
       <script>
