@@ -13,7 +13,7 @@
               <p id="license-plate">License: <%= car.license_plate %> </p>
             </div>
             <div class="car-card-content-right">
-              <h4>$<%= car.price_per_hour %> /hr</h4>
+              <h4><%= humanized_money_with_symbol((car.price_cents/100).round)%>/day</h4>
             </div>
             <div class="car-type"><p><%= car.model %></p></div>
           </div>

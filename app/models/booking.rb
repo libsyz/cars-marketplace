@@ -6,6 +6,11 @@ class Booking < ApplicationRecord
   validates :end_date, presence: true
   # validate :end_date_after_start_date?
 
+
+  def price
+    return (end_date - start_date) / (60*60*24) * car.price_cents
+  end
+
   # private
 
   # def end_date_after_start_date?
