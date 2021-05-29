@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_125439) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "image_urls"
-    t.bigint "owner_id", null: false
+    t.bigint "owner_id"
     t.float "latitude"
     t.float "longitude"
     t.integer "price_per_hour"
