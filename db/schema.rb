@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_125439) do
+ActiveRecord::Schema.define(version: 2021_05_29_035458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_125439) do
     t.bigint "owner_id"
     t.float "latitude"
     t.float "longitude"
-    t.integer "price_per_hour"
+    t.integer "price_cents", default: 0, null: false
     t.index ["owner_id"], name: "index_cars_on_owner_id"
   end
 

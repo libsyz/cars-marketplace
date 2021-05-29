@@ -40,7 +40,6 @@ end
 #   user.owner = true
 #   user.save!
 # end
-# =======
 
 car_one = Car.create!(
   age: 5,
@@ -50,7 +49,7 @@ car_one = Car.create!(
   pickup_location: "20 Jalan Hitam Manis",
   rental_instructions: Faker::Movies::StarWars.quote,
   image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  price_per_hour: (15..25).to_a.sample,
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
   owner_id: User.all.order("RANDOM()").limit(1)[0].id
   )
 
@@ -62,7 +61,7 @@ car_two = Car.create!(
   pickup_location: "Tampines Street 21 Singapore",
   rental_instructions: Faker::Movies::StarWars.quote,
   image_urls: "https://images.pexels.com/photos/6301929/pexels-photo-6301929.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  price_per_hour: (15..25).to_a.sample,
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
   owner_id: User.all.order("RANDOM()").limit(1)[0].id
   )
 
@@ -74,7 +73,31 @@ car_three = Car.create!(
   pickup_location: "661 Bukit Timah Road Singapore",
   rental_instructions: Faker::Movies::StarWars.quote,
   image_urls: "https://images.pexels.com/photos/977003/pexels-photo-977003.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  price_per_hour: (15..25).to_a.sample,
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
+  owner_id: User.all.order("RANDOM()").limit(1)[0].id
+)
+
+car_four = Car.create!(
+  age: 3,
+  license_plate: Faker::Vehicle.singapore_license_plate,
+  model: "Electric",
+  brand: "Tesla",
+  pickup_location: "50 Sixth Avenue",
+  rental_instructions: Faker::Movies::StarWars.quote,
+  image_urls: "https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
+  owner_id: User.all.order("RANDOM()").limit(1)[0].id
+)
+
+car_five = Car.create!(
+  age: 8,
+  license_plate: Faker::Vehicle.singapore_license_plate,
+  model: "Premium",
+  brand: "Mercedes",
+  pickup_location: "5 Kallang Way",
+  rental_instructions: Faker::Movies::StarWars.quote,
+  image_urls: "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
   owner_id: User.all.order("RANDOM()").limit(1)[0].id
 )
 
@@ -103,7 +126,7 @@ end
   )
 end
 
-3.times do
+5.times do
   Booking.create!(
     start_date: Faker::Date.between(from: '2021-05-10', to: '2021-05-15'),
     end_date: Faker::Date.between(from: '2021-05-20', to: '2021-05-25'),

@@ -1,0 +1,65 @@
+<div class="map" style="background-image: url('<%= @car.image_urls %>')"></div>
+
+<div class="row">
+  <div class="col-8">
+    <div class="car-show-card">
+
+      <h4 class="car-card-title">Booking confirmation</h4>
+      <%= form_tag payments_path do %>
+
+        Car Model: <%= @car.model %>
+        <br>
+        Car Brand: <%= @car.brand %>
+        <br>
+        Booking Start: <%= @booking.start_date.strftime("%F")%>
+        <br>
+        Booking End: <%= @booking.end_date.strftime("%F") %>
+        <br>
+        Price: $<%= (@booking.price)/100 %>
+        <%= hidden_field_tag 'booking_id', @booking.id %>
+        <br>
+      <% end %>
+
+      Purchase of <strong><%= @booking.car.model %><%= @booking.car.brand %></strong> for <strong><%= humanized_money_with_symbol @booking.price / 100%></strong>
+      <br>
+      <button id="pay" class="btn btn-secondary">Pay</button>
+
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+        const paymentButton = document.getElementById('pay');
+        paymentButton.addEventListener('click', () => {
+          const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+          stripe.redirectToCheckout({
+            sessionId: '<%= @session %>'
+          });
+        });
+      </script>
+
+    </div>
+
+  </div>
+
+  <div class="col-4">
+
+
+    <div class="car-show-card">
+        <h4 class="car-card-title">Share</h4>
+          <i class="fab fa-facebook-square fa-2x"></i>
+          <i class="fab fa-twitter-square fa-2x"></i>
+          <i class="fab fa-pinterest-square fa-2x"></i>
+          <i class="fas fa-envelope-square fa-2x"></i>
+
+    </div>
+  </div>
+</div>
+
+
+
+<br>
+
+
+<!--
+<%= link_to 'Edit', edit_car_path(@car), class: 'btn btn-outline-secondary' %>
+<%= link_to 'Back', cars_path, class: 'btn btn-outline-secondary' %>
+
+-->
