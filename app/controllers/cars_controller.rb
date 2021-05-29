@@ -8,9 +8,11 @@ class CarsController < ApplicationController
 
   def index
     # 1. Find me all cars that are within the booking timeframe
+    start_date_search = params[:search][:start_date]
+    end_date_search = params[:search][:end_date]
     sql = "select * from cars join bookings on cars.id = bookings.car_id
-    where (bookings.start_date > cast('#{params[:search][:end_date]}' as date)
-    OR bookings.end_date < cast('#{params[:search][:start_date]}' as date))"
+    where (bookings.start_date > cast(case when '#{end_date_search}' = '' then null else '#{end_date_search}' end AS date)
+    OR bookings.end_date < cast(case when '#{start_date_search}' = '' then null else '#{start_date_search}' end AS date))"
     results = ActiveRecord::Base.connection.execute(sql)
 
     # 2. Get cars address
