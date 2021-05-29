@@ -19,8 +19,8 @@ class BookingsController < ApplicationController
     @booking.car = @car
     @booking.user_id = current_user.id
     @booking.status = "pending"
-    if @booking.save
 
+    if @booking.save
       session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
         line_items: [{
@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
           quantity: 1
         }],
         success_url: booking_success_url,
-        cancel_url: cars_path
+        cancel_url: booking_success_url
       )
 
       @session = session.id

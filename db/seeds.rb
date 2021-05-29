@@ -49,7 +49,7 @@ car_one = Car.create!(
   pickup_location: "20 Jalan Hitam Manis",
   rental_instructions: Faker::Movies::StarWars.quote,
   image_urls: "https://images.pexels.com/photos/4037760/pexels-photo-4037760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  price_cents: (1500..2500).to_a.sample,
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
   owner_id: User.all.order("RANDOM()").limit(1)[0].id
   )
 
@@ -61,7 +61,7 @@ car_two = Car.create!(
   pickup_location: "Tampines Street 21 Singapore",
   rental_instructions: Faker::Movies::StarWars.quote,
   image_urls: "https://images.pexels.com/photos/6301929/pexels-photo-6301929.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  price_cents: (1500..2500).to_a.sample,
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
   owner_id: User.all.order("RANDOM()").limit(1)[0].id
   )
 
@@ -73,7 +73,7 @@ car_three = Car.create!(
   pickup_location: "661 Bukit Timah Road Singapore",
   rental_instructions: Faker::Movies::StarWars.quote,
   image_urls: "https://images.pexels.com/photos/977003/pexels-photo-977003.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-  price_cents: (1500..2500).to_a.sample,
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
   owner_id: User.all.order("RANDOM()").limit(1)[0].id
 )
 
@@ -85,7 +85,7 @@ car_four = Car.create!(
   pickup_location: "50 Sixth Avenue",
   rental_instructions: Faker::Movies::StarWars.quote,
   image_urls: "https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-  price_cents: (1500..2500).to_a.sample,
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
   owner_id: User.all.order("RANDOM()").limit(1)[0].id
 )
 
@@ -97,7 +97,7 @@ car_five = Car.create!(
   pickup_location: "5 Kallang Way",
   rental_instructions: Faker::Movies::StarWars.quote,
   image_urls: "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-  price_cents: (1500..2500).to_a.sample,
+  price_cents: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000].sample,
   owner_id: User.all.order("RANDOM()").limit(1)[0].id
 )
 
